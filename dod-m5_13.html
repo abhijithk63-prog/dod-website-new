@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>DoD — Driver on Demand · HSR Layout & Bommanahalli, Bengaluru</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --crimson: #C41E3A;
+  --crimson-dark: #A01830;
+  --crimson-light: #F9ECED;
+  --crimson-mid: #EDD0D4;
+  --ivory: #FBF8F6;
+  --ivory2: #F5F0EC;
+  --white: #FFFFFF;
+  --ink: #1A0808;
+  --ink2: #3A2020;
+  --muted: #7A6A6A;
+  --muted2: #B0A0A0;
+  --border: #EDE5E0;
+  --border2: #E0D4CC;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --r: 10px; --r2: 14px;
+  --shadow2: 0 8px 40px rgba(26,8,8,0.10);
+}
+body { font-family: var(--font-body); background: var(--ivory); color: var(--ink); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 3px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--crimson); height: 66px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(20px,5vw,60px);
+  box-shadow: 0 2px 20px rgba(196,30,58,0.25); transition: box-shadow 0.3s;
+}
+.nav-logo { font-family: var(--font-head); font-size: 24px; font-weight: 600; color: #fff; letter-spacing: 1px; line-height: 1; flex-shrink: 0; }
+.nav-logo span { color: #FFD0A0; }
+.nav-logo small { display: block; font-size: 9px; font-weight: 400; letter-spacing: 2px; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-top: 1px; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; letter-spacing: 0.2px; opacity: 0.88; }
+.nav-links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(255,255,255,0.5); }
+.nav-cta { display: flex; gap: 10px; align-items: center; }
+.btn-nav-ghost { padding: 8px 22px; border-radius: 100px; border: 1.5px solid rgba(255,255,255,0.55); background: transparent; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; letter-spacing: 0.2px; }
+.btn-nav-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.12); }
+.btn-nav-solid { padding: 8px 22px; border-radius: 100px; border: none; background: #fff; color: var(--crimson); font-size: 14px; font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; letter-spacing: 0.2px; }
+.btn-nav-solid:hover { background: #FFE8D0; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 199; background: var(--crimson-dark); padding: 0 5vw; border-top: 1px solid rgba(255,255,255,0.08); flex-direction: column; max-height: calc(100vh - 60px); overflow-y: auto; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: #fff; text-decoration: none; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: block; letter-spacing: 0.2px; }
+.mobile-menu-btns { display: flex; gap: 10px; padding: 16px 0 20px; }
+.mobile-menu-btns button { flex: 1; padding: 12px; border-radius: var(--r); font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+.mm-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+.mm-solid { background: #fff; color: var(--crimson); border: none; }
+
+/* ===== HERO ===== */
+.hero { min-height: 100svh; padding: 80px clamp(20px,5vw,60px) 60px; background: var(--white); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+.hero-accent-line { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--crimson); }
+.hero-watermark { position: absolute; bottom: -20px; right: -10px; font-family: var(--font-head); font-size: clamp(100px,20vw,220px); font-weight: 600; color: rgba(196,30,58,0.04); line-height: 1; pointer-events: none; user-select: none; letter-spacing: 8px; white-space: nowrap; text-transform: uppercase; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px,4vw,60px); align-items: center; max-width: 1200px; position: relative; z-index: 2; }
+.location-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--crimson-light); border: 1px solid var(--crimson-mid); border-radius: 6px; padding: 6px 14px; margin-bottom: 20px; width: fit-content; }
+.loc-dot { width: 7px; height: 7px; background: var(--crimson); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+.loc-text { font-size: 12px; font-weight: 500; color: var(--crimson); letter-spacing: 0.3px; }
+.loc-pill { background: var(--crimson); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+.hero h1 { font-family: var(--font-head); font-size: clamp(48px,6.5vw,88px); font-weight: 500; line-height: 1.0; letter-spacing: 2px; color: var(--ink); margin-bottom: 20px; text-transform: uppercase; }
+.hero h1 .accent { color: var(--crimson); font-style: italic; font-weight: 400; }
+.hero-desc { font-size: clamp(14px,1.5vw,16px); color: var(--muted); line-height: 1.75; margin-bottom: 12px; max-width: 460px; font-weight: 300; }
+.hero-tagline { font-size: 13px; color: var(--muted2); margin-bottom: 34px; font-weight: 400; letter-spacing: 0.2px; display: flex; align-items: center; gap: 6px; }
+.hero-tagline::before { content: ''; width: 24px; height: 1px; background: var(--crimson-mid); }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r); background: var(--crimson); color: #fff; font-size: 14px; font-weight: 500; border: none; cursor: pointer; transition: all 0.25s; font-family: var(--font-body); letter-spacing: 0.3px; white-space: nowrap; }
+.btn-primary:hover { background: var(--crimson-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,30,58,0.3); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r); background: transparent; color: var(--ink); font-size: 14px; font-weight: 500; border: 1.5px solid var(--border2); cursor: pointer; transition: all 0.25s; font-family: var(--font-body); white-space: nowrap; }
+.btn-secondary:hover { border-color: var(--crimson); color: var(--crimson); background: var(--crimson-light); }
+.hero-right { display: flex; flex-direction: column; gap: 13px; }
+.float-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r2); padding: 16px 18px; box-shadow: var(--shadow2); transition: transform 0.3s; border-left: 3px solid var(--crimson); }
+.float-card:hover { transform: translateX(-4px); }
+.fc-badge { font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2); margin-bottom: 8px; }
+.fc-row { display: flex; align-items: center; gap: 10px; }
+.fc-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.fc-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.fc-sub { font-size: 11px; color: var(--muted); }
+.fc-eta { font-family: var(--font-head); font-size: 26px; font-weight: 600; color: var(--crimson); letter-spacing: 0; line-height: 1; margin-left: auto; }
+.fc-eta small { font-size: 12px; font-weight: 400; }
+.fc-prog { height: 3px; background: var(--crimson-light); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+.fc-prog-fill { height: 100%; width: 68%; background: var(--crimson); border-radius: 2px; animation: prog 2.5s ease-in-out infinite alternate; }
+@keyframes prog { from{width:55%} to{width:80%} }
+.fc-stars { color: #F59E0B; font-size: 12px; letter-spacing: 1px; }
+.fc-status-dot { width: 6px; height: 6px; background: #22C55E; border-radius: 50%; animation: blink 1.5s infinite; }
+.fc-route-line { display: flex; align-items: center; gap: 5px; margin-top: 7px; }
+.route-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.route-dash { flex: 1; height: 1px; background: repeating-linear-gradient(to right, var(--crimson) 0, var(--crimson) 4px, transparent 4px, transparent 8px); opacity: 0.4; }
+.anim1{animation:f1 4s ease-in-out infinite} .anim2{animation:f2 5s ease-in-out infinite} .anim3{animation:f3 3.5s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes f2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes f3{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* ===== TRUST BAR ===== */
+.trust-bar { background: var(--crimson); padding: 18px clamp(20px,5vw,60px); }
+.trust-inner { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.trust-pill { display: flex; align-items: center; gap: 7px; padding: 7px 16px; border-radius: 100px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); font-size: 12px; font-weight: 400; color: #fff; white-space: nowrap; transition: background 0.2s; }
+.trust-pill:hover { background: rgba(255,255,255,0.18); }
+
+/* ===== SECTION BASE ===== */
+section { padding: clamp(60px,8vw,100px) clamp(20px,5vw,60px); }
+.sec-label { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--crimson); border-left: 2px solid var(--crimson); padding-left: 10px; margin-bottom: 14px; }
+.sec-title { font-family: var(--font-head); font-size: clamp(34px,4.5vw,58px); font-weight: 500; line-height: 1.0; letter-spacing: 3px; color: var(--ink); margin-bottom: 16px; text-transform: uppercase; }
+.sec-sub { font-size: 15px; color: var(--muted); line-height: 1.75; font-weight: 300; }
+
+/* ===== SOCIAL PROOF ===== */
+.social-proof { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: clamp(28px,4vw,44px) clamp(20px,5vw,60px); }
+.sp-inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; max-width: 900px; margin: 0 auto; }
+.sp-stat { text-align: center; padding: 0 20px; border-right: 1px solid var(--border); }
+.sp-stat:last-child { border-right: none; }
+.sp-num { font-family: var(--font-head); font-size: clamp(32px,4vw,52px); font-weight: 600; color: var(--crimson); letter-spacing: 1px; line-height: 1; margin-bottom: 6px; }
+.sp-label { font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: 0.5px; }
+.sp-sub { font-size: 11px; color: var(--muted2); margin-top: 2px; font-weight: 300; }
+
+/* ===== SERVICES ===== */
+.services { background: var(--ivory); }
+.services-head { text-align: center; margin-bottom: 50px; }
+.services-head .sec-label { display: block; width: fit-content; margin: 0 auto 14px; }
+.services-head .sec-sub { max-width: 500px; margin: 0 auto; }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px,2.5vw,28px); max-width: 1100px; margin: 0 auto; }
+.service-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r2); padding: clamp(24px,3vw,40px); position: relative; overflow: hidden; transition: all 0.3s; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--crimson); }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 16px 50px rgba(26,8,8,0.10); border-color: var(--crimson-mid); }
+.sc-num { position: absolute; bottom: 16px; right: 20px; font-family: var(--font-head); font-size: 72px; font-weight: 600; color: rgba(196,30,58,0.05); line-height: 1; pointer-events: none; letter-spacing: 2px; }
+.sc-icon { width: 48px; height: 48px; border-radius: var(--r); background: var(--crimson-light); border: 1px solid var(--crimson-mid); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; }
+.service-card h3 { font-family: var(--font-head); font-size: clamp(22px,2.5vw,30px); font-weight: 500; letter-spacing: 2px; margin-bottom: 10px; color: var(--ink); text-transform: uppercase; }
+.service-card > p { color: var(--muted); font-size: 13px; line-height: 1.72; margin-bottom: 22px; font-weight: 300; }
+.sc-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 28px; }
+.sc-features li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--ink2); font-weight: 400; }
+.sc-features li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--crimson); flex-shrink: 0; }
+.sc-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 24px; border-radius: var(--r); background: var(--crimson); color: #fff; font-size: 13px; font-weight: 500; border: none; cursor: pointer; transition: all 0.25s; font-family: var(--font-body); }
+.sc-btn:hover { background: var(--crimson-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(196,30,58,0.25); }
+
+/* ===== HOW IT WORKS ===== */
+.how { background: var(--white); }
+.how-head { margin-bottom: 56px; }
+.how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; position: relative; max-width: 860px; }
+.how-connector { position: absolute; top: 38px; left: calc(33.33% + 18px); right: calc(33.33% + 18px); height: 1px; background: repeating-linear-gradient(to right, var(--crimson-mid) 0, var(--crimson-mid) 6px, transparent 6px, transparent 14px); }
+.how-step { padding-right: clamp(16px,3vw,32px); }
+.how-step:last-child { padding-right: 0; }
+.how-num-wrap { width: 76px; height: 76px; border-radius: 50%; background: var(--crimson-light); border: 1.5px solid var(--crimson-mid); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: all 0.3s; }
+.how-step:hover .how-num-wrap { background: var(--crimson); border-color: var(--crimson); }
+.how-step:hover .how-num { color: #fff; }
+.how-num { font-family: var(--font-head); font-size: 28px; font-weight: 500; color: var(--crimson); line-height: 1; transition: color 0.3s; letter-spacing: 1px; }
+.how-step h3 { font-family: var(--font-head); font-size: clamp(20px,2vw,24px); font-weight: 500; color: var(--ink); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; }
+.how-step p { font-size: 13px; color: var(--muted); line-height: 1.72; font-weight: 300; }
+
+/* ===== WHY DOD ===== */
+.why { background: var(--ivory); }
+.why-head { margin-bottom: 44px; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 960px; }
+.compare-card { border-radius: var(--r2); padding: clamp(24px,3vw,36px); border: 1px solid var(--border); }
+.compare-card.trad { background: var(--white); opacity: 0.6; }
+.compare-card.dod { background: var(--white); border-color: var(--crimson-mid); position: relative; overflow: hidden; }
+.compare-card.dod::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--crimson); }
+.compare-badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.badge-gray { background: var(--ivory2); color: var(--muted); }
+.badge-red { background: var(--crimson-light); color: var(--crimson); border: 1px solid var(--crimson-mid); }
+.compare-title { font-family: var(--font-head); font-size: clamp(18px,2vw,22px); font-weight: 500; color: var(--ink); margin-bottom: 22px; text-transform: uppercase; letter-spacing: 2px; }
+.cmp-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+.cmp-item:last-child { border-bottom: none; }
+.cmp-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.cmp-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--ink2); }
+.cmp-text span { font-size: 11px; color: var(--muted2); font-weight: 300; }
+
+/* ===== PRICING ===== */
+.pricing { background: var(--white); }
+.pricing-head { margin-bottom: 50px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(14px,2vw,24px); max-width: 1000px; }
+.price-card { border-radius: var(--r2); border: 1px solid var(--border); background: var(--ivory); padding: clamp(24px,3vw,36px); position: relative; transition: all 0.3s; }
+.price-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(26,8,8,0.09); }
+.price-card.featured { background: var(--white); border-color: var(--crimson-mid); }
+.price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--crimson); border-radius: var(--r2) var(--r2) 0 0; }
+.price-popular { position: absolute; top: -1px; right: 20px; background: var(--crimson); color: #fff; font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 0 0 6px 6px; }
+.price-icon { font-size: 22px; margin-bottom: 16px; }
+.price-plan { font-family: var(--font-head); font-size: 20px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+.price-desc { font-size: 12px; color: var(--muted); margin-bottom: 22px; font-weight: 300; line-height: 1.6; }
+.price-amount { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
+.price-num { font-family: var(--font-head); font-size: clamp(36px,4vw,52px); font-weight: 600; color: var(--ink); letter-spacing: -1px; line-height: 1; }
+.price-num.crimson { color: var(--crimson); }
+.price-unit { font-size: 14px; color: var(--muted); font-weight: 300; }
+.price-min { font-size: 11px; color: var(--muted2); margin-bottom: 22px; font-weight: 300; }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 28px; }
+.price-features li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--ink2); font-weight: 400; }
+.price-features li::before { content: '✓'; color: var(--crimson); font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.price-btn { width: 100%; padding: 12px; border-radius: var(--r); font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--font-body); transition: all 0.25s; letter-spacing: 0.2px; }
+.price-btn.solid { background: var(--crimson); color: #fff; border: none; }
+.price-btn.solid:hover { background: var(--crimson-dark); box-shadow: 0 6px 20px rgba(196,30,58,0.25); }
+.price-btn.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border2); }
+.price-btn.outline:hover { border-color: var(--crimson); color: var(--crimson); background: var(--crimson-light); }
+.pricing-note { margin-top: 28px; font-size: 12px; color: var(--muted2); font-weight: 300; display: flex; align-items: center; gap: 6px; }
+.pricing-note::before { content: ''; width: 20px; height: 1px; background: var(--crimson-mid); }
+
+/* ===== SERVICE AREAS ===== */
+.areas { background: var(--crimson); }
+.areas-head { margin-bottom: 44px; }
+.areas-head .sec-label { color: rgba(255,255,255,0.55); border-left-color: rgba(255,255,255,0.35); }
+.areas-head .sec-title { color: #fff; }
+.areas-head .sec-sub { color: rgba(255,255,255,0.60); max-width: 500px; }
+.areas-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px,3vw,32px); max-width: 900px; }
+.area-card { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--r2); padding: clamp(20px,3vw,32px); transition: background 0.25s; }
+.area-card:hover { background: rgba(255,255,255,0.17); }
+.area-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.area-pin { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.area-name { font-family: var(--font-head); font-size: clamp(20px,2.5vw,26px); font-weight: 500; color: #fff; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+.area-zone { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; font-weight: 300; }
+.area-zones { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+.area-zone-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 4px 12px; font-size: 11px; color: rgba(255,255,255,0.82); font-weight: 400; }
+.area-note { font-size: 12px; color: rgba(255,255,255,0.50); font-weight: 300; line-height: 1.6; display: flex; gap: 6px; }
+.area-note::before { content: '→'; color: rgba(255,255,255,0.35); flex-shrink: 0; }
+.areas-coming { margin-top: 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.coming-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
+.coming-pill { background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.25); border-radius: 100px; padding: 5px 14px; font-size: 12px; color: rgba(255,255,255,0.55); }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials { background: var(--ivory); }
+.testi-head { margin-bottom: 44px; }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.testi-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r2); padding: clamp(20px,2.5vw,28px); transition: all 0.3s; position: relative; overflow: hidden; }
+.testi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--crimson); opacity: 0; transition: opacity 0.3s; }
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(26,8,8,0.09); }
+.testi-card:hover::before { opacity: 1; }
+.testi-q { font-size: 32px; line-height: 1; color: var(--crimson-mid); font-family: Georgia,serif; margin-bottom: 10px; }
+.testi-text { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; font-style: italic; font-weight: 300; }
+.testi-author { display: flex; align-items: center; gap: 10px; }
+.testi-av { width: 38px; height: 38px; border-radius: 50%; background: var(--crimson-light); border: 1px solid var(--crimson-mid); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--crimson); flex-shrink: 0; }
+.testi-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.testi-loc { font-size: 10px; color: var(--muted2); margin-top: 1px; }
+.testi-stars { color: #F59E0B; font-size: 11px; letter-spacing: 1px; margin-left: auto; align-self: flex-start; }
+
+/* ===== FAQ ===== */
+.faq { background: var(--white); }
+.faq-head { margin-bottom: 44px; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,2vw,20px); max-width: 1000px; }
+.faq-item { border: 1px solid var(--border); border-radius: var(--r2); overflow: hidden; background: var(--ivory); transition: border-color 0.2s; }
+.faq-item:hover { border-color: var(--crimson-mid); }
+.faq-item.open { border-color: var(--crimson-mid); background: var(--white); }
+.faq-q { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 20px; cursor: pointer; user-select: none; }
+.faq-q-text { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.5; }
+.faq-chevron { width: 20px; height: 20px; border-radius: 50%; background: var(--crimson-light); border: 1px solid var(--crimson-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.25s; margin-top: 1px; }
+.faq-chevron svg { width: 10px; height: 10px; stroke: var(--crimson); fill: none; stroke-width: 2.5; transition: transform 0.25s; }
+.faq-item.open .faq-chevron { background: var(--crimson); border-color: var(--crimson); }
+.faq-item.open .faq-chevron svg { stroke: #fff; transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.faq-a-inner { padding: 0 20px 18px; font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 300; border-top: 1px solid var(--border); padding-top: 14px; }
+.faq-item.open .faq-a { max-height: 200px; }
+
+/* ===== FINAL CTA ===== */
+.final-cta { background: var(--ink); padding: clamp(70px,10vw,110px) clamp(20px,5vw,60px); text-align: center; position: relative; overflow: hidden; }
+.cta-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--font-head); font-size: clamp(80px,15vw,180px); font-weight: 600; color: rgba(196,30,58,0.06); white-space: nowrap; pointer-events: none; letter-spacing: 8px; text-transform: uppercase; }
+.final-inner { position: relative; z-index: 2; }
+.final-cta .sec-label { color: rgba(255,255,255,0.45); border-left-color: var(--crimson); display: block; width: fit-content; margin: 0 auto 18px; }
+.final-cta h2 { font-family: var(--font-head); font-size: clamp(38px,5.5vw,72px); font-weight: 500; letter-spacing: 3px; line-height: 1.0; color: #fff; margin-bottom: 16px; text-transform: uppercase; }
+.final-cta h2 span { color: var(--crimson); font-style: italic; font-weight: 400; }
+.final-cta p { font-size: 15px; color: rgba(255,255,255,0.50); margin-bottom: 40px; font-weight: 300; }
+.final-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-cta-p { padding: 14px 34px; border-radius: var(--r); background: var(--crimson); color: #fff; font-size: 15px; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+.btn-cta-p:hover { background: var(--crimson-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,30,58,0.4); }
+.btn-cta-o { padding: 14px 34px; border-radius: var(--r); background: transparent; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 400; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+.btn-cta-o:hover { border-color: rgba(255,255,255,0.55); color: #fff; background: rgba(255,255,255,0.05); }
+.city-note { margin-top: 36px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.city-note-text { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300; }
+.city-pill { background: rgba(196,30,58,0.3); border: 1px solid rgba(196,30,58,0.5); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
+
+/* ===== FOOTER ===== */
+footer { background: #110606; padding: clamp(40px,6vw,56px) clamp(20px,5vw,60px) 28px; border-top: 1px solid rgba(255,255,255,0.04); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: clamp(24px,4vw,40px); margin-bottom: 36px; }
+.footer-brand p { font-size: 12px; color: rgba(255,255,255,0.32); line-height: 1.7; margin-top: 12px; max-width: 230px; font-weight: 300; }
+.footer-col h4 { font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul li a { color: rgba(255,255,255,0.46); text-decoration: none; font-size: 13px; font-weight: 300; transition: color 0.2s; }
+.footer-col ul li a:hover { color: #fff; }
+.footer-socials { display: flex; gap: 8px; margin-top: 16px; }
+.social-ico { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.social-ico:hover { background: var(--crimson); border-color: var(--crimson); transform: translateY(-2px); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(255,255,255,0.22); flex-wrap: wrap; gap: 8px; }
+.footer-bottom a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+.footer-bottom a:hover { color: var(--crimson); }
+.footer-city { display: flex; align-items: center; gap: 6px; }
+.footer-city-dot { width: 5px; height: 5px; background: var(--crimson); border-radius: 50%; animation: blink 2s infinite; }
+
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 300;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: all 0.25s;
+  animation: waPop 0.5s 1.5s cubic-bezier(.34,1.56,.64,1) both;
+}
+.wa-float:hover { transform: scale(1.12); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+.wa-tooltip {
+  position: absolute; right: 62px; top: 50%; transform: translateY(-50%);
+  background: var(--ink); color: #fff; font-size: 12px; font-weight: 400;
+  white-space: nowrap; padding: 6px 12px; border-radius: 6px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  font-family: var(--font-body);
+}
+.wa-tooltip::after { content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-left-color: var(--ink); }
+.wa-float:hover .wa-tooltip { opacity: 1; }
+@keyframes waPop { from{opacity:0;transform:scale(0.5)} to{opacity:1;transform:scale(1)} }
+
+/* ===== REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.rd1{transition-delay:.08s} .rd2{transition-delay:.16s} .rd3{transition-delay:.24s} .rd4{transition-delay:.32s}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero-right { display: none; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-watermark { display: none; }
+  .hero h1 { font-size: clamp(48px,8vw,72px); }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid .price-card:last-child { grid-column: 1 / -1; max-width: 360px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .sp-inner { grid-template-columns: repeat(2,1fr); gap: 0; }
+  .sp-stat:nth-child(2) { border-right: none; }
+  .sp-stat { padding: 16px; border-bottom: 1px solid var(--border); }
+  .sp-stat:nth-child(3), .sp-stat:nth-child(4) { border-bottom: none; }
+  .sp-stat:nth-child(3) { border-right: 1px solid var(--border); }
+  .services-grid { gap: 14px; }
+  .how-grid { grid-template-columns: 1fr; gap: 32px; }
+  .how-connector { display: none; }
+  .why-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-grid .price-card:last-child { grid-column: auto; max-width: none; }
+  .areas-inner { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .wa-float { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(40px,11vw,56px); letter-spacing: 1px; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .service-card { padding: 16px 12px; }
+  .service-card h3 { font-size: 16px; letter-spacing: 1px; }
+  .service-card > p { font-size: 11px; margin-bottom: 14px; }
+  .sc-features { gap: 6px; }
+  .sc-features li { font-size: 11px; }
+  .sc-btn { padding: 9px 14px; font-size: 12px; }
+  .sc-icon { width: 38px; height: 38px; font-size: 16px; margin-bottom: 12px; }
+  .sc-num { font-size: 52px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .final-btns { flex-direction: column; align-items: stretch; }
+  .btn-cta-p, .btn-cta-o { text-align: center; }
+}
+@media (max-width: 360px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { padding: 20px 16px; }
+  .service-card h3 { font-size: 20px; }
+}
+
+/* ===== BOOKING MODALS ===== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(26,8,8,0.55); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff; border-radius: 20px; width: 100%; max-width: 560px;
+  max-height: 90vh; overflow-y: auto; position: relative;
+  box-shadow: 0 30px 80px rgba(26,8,8,0.25);
+  animation: modalIn 0.3s cubic-bezier(.34,1.2,.64,1) both;
+}
+@keyframes modalIn { from{opacity:0;transform:translateY(30px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+.modal-header {
+  background: var(--crimson); padding: 24px 28px 20px;
+  border-radius: 20px 20px 0 0; position: sticky; top: 0; z-index: 2;
+}
+.modal-header-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.modal-title { font-family: var(--font-head); font-size: 26px; font-weight: 500; color: #fff; letter-spacing: 2px; text-transform: uppercase; line-height: 1; }
+.modal-sub { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 6px; font-weight: 300; }
+.modal-close {
+  width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.15);
+  border: none; color: #fff; font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; line-height: 1;
+}
+.modal-close:hover { background: rgba(255,255,255,0.28); }
+.modal-steps {
+  display: flex; gap: 0; margin-top: 16px;
+}
+.modal-step-pill {
+  flex: 1; text-align: center; font-size: 10px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45);
+  padding-bottom: 8px; border-bottom: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer; transition: all 0.2s;
+}
+.modal-step-pill.active { color: #fff; border-bottom-color: #fff; }
+.modal-body { padding: 28px; }
+.form-step { display: none; }
+.form-step.active { display: block; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 18px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label {
+  display: block; font-size: 11px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+.form-label span { color: var(--crimson); }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 11px 14px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--ivory);
+  font-size: 14px; color: var(--ink); font-family: var(--font-body);
+  font-weight: 400; transition: border-color 0.2s, background 0.2s;
+  outline: none; appearance: none; -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--crimson); background: #fff;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--muted2); }
+.form-textarea { resize: none; min-height: 80px; line-height: 1.6; }
+.form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpolyline points='2,4 6,8 10,4' fill='none' stroke='%237A6A6A' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; cursor: pointer; }
+.lang-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.lang-chip {
+  padding: 7px 14px; border-radius: 100px; border: 1.5px solid var(--border);
+  background: var(--ivory); font-size: 13px; color: var(--muted);
+  cursor: pointer; transition: all 0.18s; user-select: none; font-family: var(--font-body);
+}
+.lang-chip.selected { border-color: var(--crimson); background: var(--crimson-light); color: var(--crimson); font-weight: 500; }
+.modal-footer { padding: 0 28px 28px; display: flex; gap: 12px; align-items: center; }
+.btn-modal-next, .btn-modal-submit {
+  flex: 1; padding: 13px; border-radius: 10px; background: var(--crimson);
+  color: #fff; font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+  font-family: var(--font-body); transition: all 0.25s; letter-spacing: 0.3px;
+}
+.btn-modal-next:hover, .btn-modal-submit:hover { background: var(--crimson-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(196,30,58,0.3); }
+.btn-modal-back {
+  padding: 13px 20px; border-radius: 10px; background: var(--ivory2);
+  color: var(--muted); font-size: 14px; font-weight: 500; border: 1.5px solid var(--border);
+  cursor: pointer; font-family: var(--font-body); transition: all 0.2s;
+}
+.btn-modal-back:hover { border-color: var(--crimson); color: var(--crimson); background: var(--crimson-light); }
+.modal-note { font-size: 11px; color: var(--muted2); text-align: center; margin-top: 14px; font-weight: 300; }
+.form-success { text-align: center; padding: 20px 0; }
+.form-success-icon { font-size: 52px; margin-bottom: 16px; }
+.form-success-title { font-family: var(--font-head); font-size: 28px; font-weight: 500; color: var(--ink); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+.form-success-sub { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.step-indicator { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 22px; }
+.step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+.step-dot.active { background: var(--crimson); }
+.step-dot.done { background: var(--crimson-mid); }
+/* Responsive modal */
+@media (max-width: 600px) {
+  .modal-box { border-radius: 16px; max-height: 95vh; }
+  .modal-header { padding: 20px 20px 16px; border-radius: 16px 16px 0 0; }
+  .modal-body { padding: 20px; }
+  .modal-footer { padding: 0 20px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal-title { font-size: 22px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Do<span>D</span><small>Driver on Demand</small></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#areas">Coverage</a></li>
+    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd_cxuboPKm-sNBA7PIjjf6hJN43rTs-Tt7nj-27KWItMwESw/viewform?usp=header" target="_blank" rel="noopener">Become a Driver</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-nav-ghost" onclick="window.open('https://wa.me/917204022880?text=Hi+DoD!+Checking+my+booking+status.','_blank')">Sign In</button>
+    <button class="btn-nav-solid" onclick="openModal('driver')">Book Now</button>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#areas" onclick="closeMenu()">Coverage</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_cxuboPKm-sNBA7PIjjf6hJN43rTs-Tt7nj-27KWItMwESw/viewform?usp=header" target="_blank" rel="noopener" onclick="closeMenu()">Become a Driver</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <div class="mobile-menu-btns">
+    <button class="mm-ghost" onclick="window.open('https://wa.me/917204022880?text=Hi+DoD!+Checking+my+booking+status.','_blank')">Sign In</button>
+    <button class="mm-solid" onclick="closeMenu();openModal('driver')">Book Now</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-accent-line"></div>
+  <div class="hero-watermark">DOD</div>
+  <div class="hero-inner">
+    <div>
+      <div class="location-badge">
+        <div class="loc-dot"></div>
+        <div class="loc-text">HSR Layout &amp; Bommanahalli, Bengaluru</div>
+        <div class="loc-pill">Live Now</div>
+      </div>
+      <h1>Professional<br>Drivers.<br><span class="accent">Anytime.</span></h1>
+      <p class="hero-desc">DoD — Driver on Demand connects you with verified, professional drivers and certified driving instructors, on your schedule, at your doorstep.</p>
+      <p class="hero-tagline">Hourly · Daily · Outstation · Lessons</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal('driver')">🚗 Book a Driver</button>
+        <button class="btn-secondary" onclick="openModal('instructor')">🎓 Learn Driving</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="float-card anim1">
+        <div class="fc-badge">Driver Status · HSR Layout</div>
+        <div class="fc-row">
+          <div class="fc-avatar">RK</div>
+          <div style="flex:1"><div class="fc-name">Rajesh Kumar</div><div class="fc-sub">Honda City · KA-01-AB-1234</div></div>
+          <div class="fc-eta">4<small> min</small></div>
+        </div>
+        <div class="fc-prog"><div class="fc-prog-fill"></div></div>
+      </div>
+      <div class="float-card anim2">
+        <div class="fc-badge">Booking Confirmed · Bommanahalli</div>
+        <div class="fc-row" style="margin-bottom:8px">
+          <div style="flex:1"><div class="fc-name">Airport Drop · Today 6:00 AM</div></div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:#22C55E;font-weight:500;flex-shrink:0"><div class="fc-status-dot"></div>Confirmed</div>
+        </div>
+        <div class="fc-route-line">
+          <div class="route-dot" style="background:var(--crimson)"></div>
+          <div class="route-dash"></div>
+          <div class="route-dot" style="background:var(--ink)"></div>
+        </div>
+        <div class="fc-sub" style="margin-top:6px">Bommanahalli → KIA Terminal 2 · ₹349/hr</div>
+      </div>
+      <div class="float-card anim3">
+        <div class="fc-badge">Last Ride Rated</div>
+        <div class="fc-row">
+          <div class="fc-avatar">AP</div>
+          <div style="flex:1"><div class="fc-name">Ananya P.</div><div class="fc-sub">"Felt premium and safe."</div></div>
+          <div class="fc-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-pill">✅ Verified Drivers</div>
+    <div class="trust-pill">🔍 Background Checked</div>
+    <div class="trust-pill">💬 Real-time Support</div>
+    <div class="trust-pill">📍 GPS Tracked</div>
+    <div class="trust-pill">⏱️ Flexible Hourly Booking</div>
+    <div class="trust-pill">⭐ 4.9 Avg Rating</div>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="social-proof">
+  <div class="sp-inner">
+    <div class="sp-stat reveal rd1">
+      <div class="sp-num">50+</div>
+      <div class="sp-label">Verified Drivers</div>
+      <div class="sp-sub">Active in both zones</div>
+    </div>
+    <div class="sp-stat reveal rd2">
+      <div class="sp-num">500+</div>
+      <div class="sp-label">Trips Completed</div>
+      <div class="sp-sub">And growing every week</div>
+    </div>
+    <div class="sp-stat reveal rd3">
+      <div class="sp-num">4.9</div>
+      <div class="sp-label">Average Rating</div>
+      <div class="sp-sub">Across all bookings</div>
+    </div>
+    <div class="sp-stat reveal rd4">
+      <div class="sp-num">2</div>
+      <div class="sp-label">Service Types</div>
+      <div class="sp-sub">Driver + Instructor</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-head reveal">
+    <div class="sec-label">What We Offer</div>
+    <div class="sec-title">Two Services.<br>One Platform.</div>
+    <p class="sec-sub">DoD — Driver on Demand gives you professional drivers and certified instructors, right in HSR Layout and Bommanahalli.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal rd1">
+      <div class="sc-num">01</div>
+      <div class="sc-icon">🚘</div>
+      <h3>Driver on Demand</h3>
+      <p>Hire professional drivers for airport drops, late-night travel, office commutes, events, or outstation trips — anytime you need.</p>
+      <ul class="sc-features">
+        <li>Hourly booking from ₹299/hr</li>
+        <li>Night drivers available 24/7</li>
+        <li>Chauffeur service for events</li>
+        <li>Airport pickup &amp; drop</li>
+        <li>Outstation multi-day trips</li>
+      </ul>
+      <button class="sc-btn" onclick="openModal('driver')">Book Now →</button>
+    </div>
+    <div class="service-card reveal rd2">
+      <div class="sc-num">02</div>
+      <div class="sc-icon">🎓</div>
+      <h3>Driving Instructor</h3>
+      <p>Learn driving confidently with personal certified instructors at your doorstep — using your own car, your own schedule.</p>
+      <ul class="sc-features">
+        <li>Beginner to advanced lessons</li>
+        <li>Traffic confidence training</li>
+        <li>Parking &amp; reversing practice</li>
+        <li>Women-friendly sessions</li>
+        <li>Flexible scheduling, any day</li>
+      </ul>
+      <button class="sc-btn" onclick="openModal('instructor')">Start Learning →</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-head reveal">
+    <div class="sec-label">Simple Process</div>
+    <div class="sec-title">Three Steps.<br>Zero Hassle.</div>
+  </div>
+  <div class="how-grid">
+    <div class="how-connector"></div>
+    <div class="how-step reveal rd1">
+      <div class="how-num-wrap"><div class="how-num">01</div></div>
+      <h3>Book</h3>
+      <p>Choose your service and schedule instantly. Takes under 60 seconds from anywhere in HSR Layout or Bommanahalli.</p>
+    </div>
+    <div class="how-step reveal rd2">
+      <div class="how-num-wrap"><div class="how-num">02</div></div>
+      <h3>Get Matched</h3>
+      <p>A verified DoD professional is assigned from your nearest area. You see their profile, ratings, and live ETA.</p>
+    </div>
+    <div class="how-step reveal rd3">
+      <div class="how-num-wrap"><div class="how-num">03</div></div>
+      <h3>Relax</h3>
+      <p>Track the trip or session in real-time. Safe, premium experience — every single time, guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DOD -->
+<section class="why">
+  <div class="why-head reveal">
+    <div class="sec-label">The Difference</div>
+    <div class="sec-title">Why DoD<br>Stands Apart.</div>
+  </div>
+  <div class="why-grid">
+    <div class="compare-card trad reveal rd1">
+      <div class="compare-badge badge-gray">Traditional</div>
+      <div class="compare-title">Regular Drivers</div>
+      <div class="cmp-item"><span class="cmp-icon">❌</span><div class="cmp-text"><strong>Unverified identity</strong><span>No background check or screening</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">❌</span><div class="cmp-text"><strong>Unreliable timings</strong><span>Frequent no-shows and delays</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">❌</span><div class="cmp-text"><strong>No support channel</strong><span>No help when things go wrong</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">❌</span><div class="cmp-text"><strong>Inconsistent quality</strong><span>No training or professional standards</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">❌</span><div class="cmp-text"><strong>Opaque pricing</strong><span>Surprise charges, no invoice</span></div></div>
+    </div>
+    <div class="compare-card dod reveal rd2">
+      <div class="compare-badge badge-red">DoD Experience</div>
+      <div class="compare-title" style="color:var(--crimson)">DoD Professionals</div>
+      <div class="cmp-item"><span class="cmp-icon">✅</span><div class="cmp-text"><strong>Fully verified &amp; background checked</strong><span>Every driver screened before onboarding</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">✅</span><div class="cmp-text"><strong>Punctual &amp; professional</strong><span>Live ETA tracking, on-time guarantee</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">✅</span><div class="cmp-text"><strong>24/7 live support</strong><span>Instant help via chat or call, always</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">✅</span><div class="cmp-text"><strong>Premium trained executives</strong><span>Consistent quality, every ride</span></div></div>
+      <div class="cmp-item"><span class="cmp-icon">✅</span><div class="cmp-text"><strong>Transparent hourly pricing</strong><span>Pay only for time, no hidden fees</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-head reveal">
+    <div class="sec-label">Transparent Pricing</div>
+    <div class="sec-title">Simple. Honest.<br>No Surprises.</div>
+    <p class="sec-sub">Pay only for the time you use. No hidden charges, no surge pricing, no guesswork.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal rd1">
+      <div class="price-icon">🌙</div>
+      <div class="price-plan">Night Driver</div>
+      <p class="price-desc">Safe, verified driver for late-night travel, events, or early morning airport drops.</p>
+      <div class="price-amount">
+        <div class="price-num">₹349</div>
+        <div class="price-unit">/hr</div>
+      </div>
+      <div class="price-min">Minimum 2 hours booking</div>
+      <ul class="price-features">
+        <li>Available 8 PM – 6 AM</li>
+        <li>Verified &amp; background checked</li>
+        <li>GPS tracked entire trip</li>
+        <li>Your own car or ours</li>
+      </ul>
+      <button class="price-btn outline" onclick="openModal('driver')">Book Night Driver</button>
+    </div>
+
+    <div class="price-card featured reveal rd2">
+      <div class="price-popular">Most Booked</div>
+      <div class="price-icon">🚘</div>
+      <div class="price-plan">Executive Driver</div>
+      <p class="price-desc">Professional driver for daily commutes, airport runs, office use, or any city travel.</p>
+      <div class="price-amount">
+        <div class="price-num crimson">₹299</div>
+        <div class="price-unit">/hr</div>
+      </div>
+      <div class="price-min">Minimum 2 hours · Outstation rates separate</div>
+      <ul class="price-features">
+        <li>Available 24 / 7</li>
+        <li>Trained professional driver</li>
+        <li>Live GPS tracking</li>
+        <li>Hourly or daily booking</li>
+        <li>Instant confirmation</li>
+      </ul>
+      <button class="price-btn solid" onclick="openModal('driver')">Book Now</button>
+    </div>
+
+    <div class="price-card reveal rd3">
+      <div class="price-icon">🎓</div>
+      <div class="price-plan">Driving Lesson</div>
+      <p class="price-desc">Personal instructor at your doorstep. Learn at your pace, in your own car.</p>
+      <div class="price-amount">
+        <div class="price-num">₹399</div>
+        <div class="price-unit">/session</div>
+      </div>
+      <div class="price-min">1 session = 1 hour · Packages available</div>
+      <ul class="price-features">
+        <li>Certified instructor</li>
+        <li>Your car, your location</li>
+        <li>Beginner to advanced</li>
+        <li>Women-friendly sessions</li>
+      </ul>
+      <button class="price-btn outline" onclick="openModal('instructor')">Start Learning</button>
+    </div>
+  </div>
+  <p class="pricing-note reveal">All prices are inclusive of driver charges. Fuel &amp; toll charges extra for outstation. WhatsApp us for custom corporate or bulk pricing.</p>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="areas" id="areas">
+  <div class="areas-head reveal">
+    <div class="sec-label">Where We Operate</div>
+    <div class="sec-title">Currently Serving<br>Two Zones.</div>
+    <p class="sec-sub">DoD is live and operational in HSR Layout and Bommanahalli. More Bengaluru zones coming soon.</p>
+  </div>
+  <div class="areas-inner">
+    <div class="area-card reveal rd1">
+      <div class="area-card-top">
+        <div class="area-pin">📍</div>
+        <div>
+          <div class="area-name">HSR Layout</div>
+          <div class="area-zone">South-East Bengaluru</div>
+        </div>
+      </div>
+      <div class="area-zones">
+        <span class="area-zone-pill">Sector 1</span>
+        <span class="area-zone-pill">Sector 2</span>
+        <span class="area-zone-pill">Sector 3</span>
+        <span class="area-zone-pill">Sector 4</span>
+        <span class="area-zone-pill">Sector 5</span>
+        <span class="area-zone-pill">Sector 6</span>
+        <span class="area-zone-pill">Sector 7</span>
+        <span class="area-zone-pill">27th Main</span>
+      </div>
+      <div class="area-note">Drivers available within 5–10 minutes across all HSR sectors</div>
+    </div>
+    <div class="area-card reveal rd2">
+      <div class="area-card-top">
+        <div class="area-pin">📍</div>
+        <div>
+          <div class="area-name">Bommanahalli</div>
+          <div class="area-zone">South Bengaluru</div>
+        </div>
+      </div>
+      <div class="area-zones">
+        <span class="area-zone-pill">BTM Layout</span>
+        <span class="area-zone-pill">Kudlu Gate</span>
+        <span class="area-zone-pill">Hongasandra</span>
+        <span class="area-zone-pill">Begur Road</span>
+        <span class="area-zone-pill">Harlur</span>
+        <span class="area-zone-pill">Haralur Rd</span>
+      </div>
+      <div class="area-note">Full coverage of the Bommanahalli taluk and surrounding neighbourhoods</div>
+    </div>
+  </div>
+  <div class="areas-coming reveal">
+    <span class="coming-label">Coming Soon →</span>
+    <span class="coming-pill">Koramangala</span>
+    <span class="coming-pill">Bellandur</span>
+    <span class="coming-pill">Sarjapur</span>
+    <span class="coming-pill">Electronic City</span>
+    <span class="coming-pill">Marathahalli</span>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testi-head reveal">
+    <div class="sec-label">Reviews</div>
+    <div class="sec-title">Loved in<br>Bengaluru.</div>
+    <p class="sec-sub">Real stories from customers in HSR Layout and Bommanahalli who trust DoD every day.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal rd1">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Booked a DoD driver after a late-night event in HSR Layout and the experience felt genuinely premium and safe. Punctual, professional, and the live tracking gave my family real peace of mind.</p>
+      <div class="testi-author">
+        <div class="testi-av">AP</div>
+        <div><div class="testi-name">Ananya Patel</div><div class="testi-loc">Marketing Manager · HSR Layout</div></div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="testi-card reveal rd2">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Learning to drive at 35 felt scary. The DoD instructor was incredibly patient. Within 6 sessions I was confidently driving in Bengaluru traffic. The women-friendly option was a huge plus.</p>
+      <div class="testi-author">
+        <div class="testi-av">SM</div>
+        <div><div class="testi-name">Shruti Mehta</div><div class="testi-loc">Homemaker · Bommanahalli</div></div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="testi-card reveal rd3">
+      <div class="testi-q">"</div>
+      <p class="testi-text">I use DoD for my dad's hospital appointments every week from Bommanahalli. Having a verified, trustworthy driver is priceless. The hourly pricing is so much more fair than any other option.</p>
+      <div class="testi-author">
+        <div class="testi-av">VR</div>
+        <div><div class="testi-name">Vikram Rao</div><div class="testi-loc">Software Engineer · HSR Layout</div></div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-head reveal">
+    <div class="sec-label">Common Questions</div>
+    <div class="sec-title">We've Got<br>Answers.</div>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal rd1">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do I need to provide my own car?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">For the Driver on Demand service, we drive your car — you don't need to arrange a vehicle. For driving lessons, we use your own car so you learn in the vehicle you'll actually be driving day to day.</div></div>
+    </div>
+    <div class="faq-item reveal rd2">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Are drivers available at night and on weekends?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, DoD operates 24/7 including weekends and public holidays. Night drivers are specifically available from 8 PM to 6 AM. Simply book in advance or request on-demand.</div></div>
+    </div>
+    <div class="faq-item reveal rd1">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How is the driver verified and background checked?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Every DoD driver goes through a thorough onboarding process — government ID verification, police background check, driving licence validation, and a test drive before they join the platform. You can see their profile and ratings before they arrive.</div></div>
+    </div>
+    <div class="faq-item reveal rd2">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the minimum booking duration?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">The minimum booking for our Driver on Demand service is 2 hours. For driving lessons, each session is 1 hour. There's no maximum — you can book for a full day or multi-day outstation trips at a daily rate.</div></div>
+    </div>
+    <div class="faq-item reveal rd1">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I pay? Is cash accepted?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">We accept UPI, bank transfer, and cash. Payment is made after the trip or session is completed. You'll receive a clear invoice with a breakdown — no surprise charges.</div></div>
+    </div>
+    <div class="faq-item reveal rd2">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I cancel or reschedule my booking?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Cancellations made at least 1 hour before the booking are free of charge. Rescheduling can be done anytime by messaging us on WhatsApp — we'll match you with the next available driver or instructor.</div></div>
+    </div>
+    <div class="faq-item reveal rd1">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do you offer outstation and long-distance trips?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. We handle outstation trips from HSR Layout and Bommanahalli to anywhere in Karnataka and beyond. Outstation bookings are priced separately — WhatsApp us with your destination and dates for a custom quote.</div></div>
+    </div>
+    <div class="faq-item reveal rd2">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is DoD available for corporate bulk bookings?</span>
+        <span class="faq-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. We work with companies that need regular drivers for staff travel, executive pickups, or client management. Monthly packages with dedicated drivers are available. Reach out via WhatsApp to discuss your requirements.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="cta-watermark">DOD</div>
+  <div class="final-inner reveal">
+    <div class="sec-label">Get Started Today</div>
+    <h2>Your <span>Personal Driver</span>,<br>Minutes Away.</h2>
+    <p>Serving HSR Layout &amp; Bommanahalli, Bengaluru — reliable driving assistance whenever you need it.</p>
+    <div class="final-btns">
+      <button class="btn-cta-p" onclick="openModal('driver')">🚗 Book Now</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_cxuboPKm-sNBA7PIjjf6hJN43rTs-Tt7nj-27KWItMwESw/viewform?usp=header" target="_blank" rel="noopener" class="btn-cta-o" style="text-decoration:none;display:inline-block;text-align:center">Become a Driver →</a>
+    </div>
+    <div class="city-note">
+      <div class="city-pill">📍 HSR Layout</div>
+      <div class="city-note-text">&amp;</div>
+      <div class="city-pill">📍 Bommanahalli</div>
+      <div class="city-note-text">· Bengaluru</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="font-size:22px">Do<span>D</span><small>Driver on Demand</small></div>
+      <p>Professional drivers and driving instructors on demand. Currently serving HSR Layout and Bommanahalli, Bengaluru. More areas coming soon.</p>
+      <div class="footer-socials">
+        <a class="social-ico" href="#" title="Instagram">📸</a>
+        <a class="social-ico" href="#" title="WhatsApp">💬</a>
+        <a class="social-ico" href="#" title="Twitter">𝕏</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About DoD</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Driver on Demand</a></li>
+        <li><a href="#services">Driving Instructor</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#areas">Coverage Areas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd_cxuboPKm-sNBA7PIjjf6hJN43rTs-Tt7nj-27KWItMwESw/viewform?usp=header" target="_blank" rel="noopener">Become a Driver</a></li>
+    <li><a href="#faq">FAQ</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd_cxuboPKm-sNBA7PIjjf6hJN43rTs-Tt7nj-27KWItMwESw/viewform?usp=header" target="_blank" rel="noopener">Become a Driver</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 DoD — Driver on Demand. All rights reserved.</span>
+    <div class="footer-city"><div class="footer-city-dot"></div><span>Live in HSR Layout &amp; Bommanahalli, Bengaluru</span></div>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+
+<!-- DRIVER BOOKING MODAL -->
+<div class="modal-overlay" id="modalDriver">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Book a Driver">
+    <div class="modal-header">
+      <div class="modal-header-top">
+        <div>
+          <div class="modal-title">🚗 Book a Driver</div>
+          <div class="modal-sub">DoD — Driver on Demand · HSR Layout & Bommanahalli</div>
+        </div>
+        <button class="modal-close" onclick="closeModal('modalDriver')" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-steps" id="driverSteps">
+        <div class="modal-step-pill active" onclick="goStep('driver',1)">Your Details</div>
+        <div class="modal-step-pill" onclick="goStep('driver',2)">Trip Details</div>
+        <div class="modal-step-pill" onclick="goStep('driver',3)">Preferences</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="step-indicator" id="driverDots">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+
+      <!-- Step 1: Personal -->
+      <div class="form-step active" id="driverStep1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name <span>*</span></label>
+            <input class="form-input" id="d_name" type="text" placeholder="Your full name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span>*</span></label>
+            <input class="form-input" id="d_phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Area <span>*</span></label>
+          <select class="form-select" id="d_area">
+            <option value="">Select your area</option>
+            <option>HSR Layout — Sector 1</option>
+            <option>HSR Layout — Sector 2</option>
+            <option>HSR Layout — Sector 3</option>
+            <option>HSR Layout — Sector 4</option>
+            <option>HSR Layout — Sector 5</option>
+            <option>HSR Layout — Sector 6</option>
+            <option>HSR Layout — Sector 7</option>
+            <option>HSR Layout — 27th Main</option>
+            <option>Bommanahalli</option>
+            <option>BTM Layout</option>
+            <option>Kudlu Gate</option>
+            <option>Hongasandra</option>
+            <option>Harlur</option>
+            <option>Other (mention in notes)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 2: Trip -->
+      <div class="form-step" id="driverStep2">
+        <div class="form-group">
+          <label class="form-label">Pickup Location <span>*</span></label>
+          <input class="form-input" id="d_pickup" type="text" placeholder="Full pickup address">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Drop Location <span>*</span></label>
+          <input class="form-input" id="d_drop" type="text" placeholder="Destination address">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date <span>*</span></label>
+            <input class="form-input" id="d_date" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time <span>*</span></label>
+            <input class="form-input" id="d_time" type="time">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Trip Type <span>*</span></label>
+          <select class="form-select" id="d_type">
+            <option value="">Select trip type</option>
+            <option>Airport Drop / Pickup</option>
+            <option>Office Commute (Daily)</option>
+            <option>One-time City Trip</option>
+            <option>Night / Late-night Travel</option>
+            <option>Event / Wedding Chauffeur</option>
+            <option>Outstation Trip</option>
+            <option>Hospital / Medical</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 3: Preferences -->
+      <div class="form-step" id="driverStep3">
+        <div class="form-group">
+          <label class="form-label">Your Car Details</label>
+          <input class="form-input" id="d_car" type="text" placeholder="e.g. Maruti Swift, White, KA-01-AB-1234">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Language <span>*</span></label>
+          <div class="lang-grid" id="d_langs">
+            <div class="lang-chip" onclick="toggleLang(this)">Kannada</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Hindi</div>
+            <div class="lang-chip" onclick="toggleLang(this)">English</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Tamil</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Telugu</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Malayalam</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estimated Hours Needed</label>
+          <select class="form-select" id="d_hours">
+            <option value="">Select duration</option>
+            <option>2 Hours</option>
+            <option>3 Hours</option>
+            <option>4 Hours</option>
+            <option>Half Day (6 hrs)</option>
+            <option>Full Day (10–12 hrs)</option>
+            <option>Multi-day / Outstation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Additional Notes</label>
+          <textarea class="form-textarea" id="d_notes" placeholder="Any special requirements, instructions or requests..."></textarea>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="form-step" id="driverSuccess">
+        <div class="form-success">
+          <div class="form-success-icon">✅</div>
+          <div class="form-success-title">Booking Received!</div>
+          <p class="form-success-sub">We have received your booking request! Our team is available 24 hours and will confirm your driver on WhatsApp shortly.<br><br>You can also reach us anytime on WhatsApp — just tap the chat button.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="driverFooter">
+      <button class="btn-modal-back" id="driverBack" onclick="prevStep('driver')" style="display:none">← Back</button>
+      <button class="btn-modal-next" id="driverNext" onclick="nextStep('driver')">Next →</button>
+    </div>
+    <p class="modal-note" id="driverNote">Step 1 of 3 · Your details are private and used only for this booking</p>
+  </div>
+</div>
+
+<!-- INSTRUCTOR BOOKING MODAL -->
+<div class="modal-overlay" id="modalInstructor">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Book a Driving Instructor">
+    <div class="modal-header">
+      <div class="modal-header-top">
+        <div>
+          <div class="modal-title">🎓 Driving Lesson</div>
+          <div class="modal-sub">DoD — Driver on Demand · Book a Certified Instructor</div>
+        </div>
+        <button class="modal-close" onclick="closeModal('modalInstructor')" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-steps" id="instructorSteps">
+        <div class="modal-step-pill active" onclick="goStep('instructor',1)">Your Details</div>
+        <div class="modal-step-pill" onclick="goStep('instructor',2)">Lesson Details</div>
+        <div class="modal-step-pill" onclick="goStep('instructor',3)">Preferences</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="step-indicator" id="instructorDots">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="form-step active" id="instructorStep1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name <span>*</span></label>
+            <input class="form-input" id="i_name" type="text" placeholder="Your full name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span>*</span></label>
+            <input class="form-input" id="i_phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Area <span>*</span></label>
+          <select class="form-select" id="i_area">
+            <option value="">Select your area</option>
+            <option>HSR Layout — Sector 1</option>
+            <option>HSR Layout — Sector 2</option>
+            <option>HSR Layout — Sector 3</option>
+            <option>HSR Layout — Sector 4</option>
+            <option>HSR Layout — Sector 5</option>
+            <option>HSR Layout — Sector 6</option>
+            <option>HSR Layout — Sector 7</option>
+            <option>HSR Layout — 27th Main</option>
+            <option>Bommanahalli</option>
+            <option>BTM Layout</option>
+            <option>Kudlu Gate</option>
+            <option>Hongasandra</option>
+            <option>Harlur</option>
+            <option>Other (mention in notes)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <select class="form-select" id="i_gender">
+            <option value="">Prefer not to say</option>
+            <option>Female — prefer female instructor</option>
+            <option>Male</option>
+            <option>No preference</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" id="instructorStep2">
+        <div class="form-group">
+          <label class="form-label">Lesson Location <span>*</span></label>
+          <input class="form-input" id="i_location" type="text" placeholder="Where should the instructor come?">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Preferred Date <span>*</span></label>
+            <input class="form-input" id="i_date" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Time <span>*</span></label>
+            <input class="form-input" id="i_time" type="time">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Experience Level <span>*</span></label>
+          <select class="form-select" id="i_level">
+            <option value="">Select your level</option>
+            <option>Complete Beginner — never driven</option>
+            <option>Beginner — driven a little</option>
+            <option>Intermediate — know basics, need confidence</option>
+            <option>Advanced — need specific skills</option>
+            <option>Refresher — returning after a gap</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Number of Sessions Needed</label>
+          <select class="form-select" id="i_sessions">
+            <option value="">Not sure yet</option>
+            <option>1 Session (Trial)</option>
+            <option>3 Sessions</option>
+            <option>5 Sessions</option>
+            <option>10 Sessions</option>
+            <option>Ongoing — weekly</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" id="instructorStep3">
+        <div class="form-group">
+          <label class="form-label">Your Car Details <span>*</span></label>
+          <input class="form-input" id="i_car" type="text" placeholder="e.g. Maruti Swift, Manual, White">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Transmission Type</label>
+          <select class="form-select" id="i_transmission">
+            <option value="">Select</option>
+            <option>Manual</option>
+            <option>Automatic</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Language <span>*</span></label>
+          <div class="lang-grid" id="i_langs">
+            <div class="lang-chip" onclick="toggleLang(this)">Kannada</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Hindi</div>
+            <div class="lang-chip" onclick="toggleLang(this)">English</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Tamil</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Telugu</div>
+            <div class="lang-chip" onclick="toggleLang(this)">Malayalam</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Additional Notes</label>
+          <textarea class="form-textarea" id="i_notes" placeholder="Any specific areas to focus on, concerns, or requests..."></textarea>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="form-step" id="instructorSuccess">
+        <div class="form-success">
+          <div class="form-success-icon">✅</div>
+          <div class="form-success-title">Request Received!</div>
+          <p class="form-success-sub">We have received your lesson request! Our team is available 24 hours and will confirm your instructor on WhatsApp shortly.<br><br>You can also reach us anytime on WhatsApp — just tap the chat button.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="instructorFooter">
+      <button class="btn-modal-back" id="instructorBack" onclick="prevStep('instructor')" style="display:none">← Back</button>
+      <button class="btn-modal-next" id="instructorNext" onclick="nextStep('instructor')">Next →</button>
+    </div>
+    <p class="modal-note" id="instructorNote">Step 1 of 3 · Your details are private and used only for this booking</p>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/917204022880" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <div class="wa-tooltip">Chat with us on WhatsApp</div>
+  💬
+</a>
+
+<script>
+// Hamburger
+const hb = document.getElementById('hamburger');
+const mm = document.getElementById('mobileMenu');
+hb.addEventListener('click', () => {
+  hb.classList.toggle('open');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+});
+function closeMenu() {
+  hb.classList.remove('open');
+  mm.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', (e) => {
+  if (!hb.contains(e.target) && !mm.contains(e.target)) closeMenu();
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); closeMenu(); setTimeout(() => t.scrollIntoView({ behavior: 'smooth' }), 10); }
+  });
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.boxShadow =
+    window.scrollY > 30 ? '0 4px 30px rgba(196,30,58,0.35)' : '0 2px 20px rgba(196,30,58,0.25)';
+}, { passive: true });
+
+// FAQ accordion
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Init EmailJS
+(function(){ emailjs.init({ publicKey: 's4q_f_GaWYpXitAIg' }); })();
+
+// ── MODAL SYSTEM ──────────────────────────────────────────────────────────────
+const WA_NUM = '917204022880';
+const OWNER_EMAIL = 'dodteams@gmail.com';
+
+const modalState = {
+  driver: { step: 1, total: 3 },
+  instructor: { step: 1, total: 3 }
+};
+
+function openModal(type) {
+  const id = type === 'driver' ? 'modalDriver' : 'modalInstructor';
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Set min date to today
+  const today = new Date().toISOString().split('T')[0];
+  const dateId = type === 'driver' ? 'd_date' : 'i_date';
+  const el = document.getElementById(dateId);
+  if(el) el.min = today;
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if(e.target === this) closeModal(this.id);
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  }
+});
+
+function updateModalUI(type) {
+  const s = modalState[type];
+  const prefix = type === 'driver' ? 'driver' : 'instructor';
+  const steps = document.getElementById(prefix + 'Steps').querySelectorAll('.modal-step-pill');
+  const dots = document.getElementById(prefix + 'Dots').querySelectorAll('.step-dot');
+  const backBtn = document.getElementById(prefix + 'Back');
+  const nextBtn = document.getElementById(prefix + 'Next');
+  const note = document.getElementById(prefix + 'Note');
+
+  steps.forEach((p, i) => {
+    p.classList.toggle('active', i === s.step - 1);
+  });
+  dots.forEach((d, i) => {
+    d.classList.toggle('active', i === s.step - 1);
+    d.classList.toggle('done', i < s.step - 1);
+  });
+
+  backBtn.style.display = s.step > 1 ? 'block' : 'none';
+  nextBtn.textContent = s.step === s.total ? 'Submit Booking →' : 'Next →';
+  note.textContent = `Step ${s.step} of ${s.total} · Your details are private and used only for this booking`;
+}
+
+function goStep(type, stepNum) {
+  const prefix = type === 'driver' ? 'driver' : 'instructor';
+  const old = modalState[type].step;
+  modalState[type].step = stepNum;
+  document.getElementById(prefix + 'Step' + old).classList.remove('active');
+  document.getElementById(prefix + 'Step' + stepNum).classList.add('active');
+  updateModalUI(type);
+}
+
+function validateStep(type) {
+  const s = modalState[type].step;
+  const d = type === 'driver';
+  const required = {
+    driver: {
+      1: ['d_name','d_phone','d_area'],
+      2: ['d_pickup','d_drop','d_date','d_time','d_type'],
+      3: []
+    },
+    instructor: {
+      1: ['i_name','i_phone','i_area'],
+      2: ['i_location','i_date','i_time','i_level'],
+      3: ['i_car']
+    }
+  };
+  const fields = required[type][s] || [];
+  let valid = true;
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if(!el.value.trim()) {
+      el.style.borderColor = '#C41E3A';
+      el.style.background = '#FFF5F6';
+      valid = false;
+      el.addEventListener('input', () => {
+        el.style.borderColor = '';
+        el.style.background = '';
+      }, { once: true });
+    }
+  });
+  if(!valid) {
+    const first = fields.find(id => !document.getElementById(id).value.trim());
+    if(first) document.getElementById(first).focus();
+  }
+  // Check at least one language on step 3
+  if(s === 3) {
+    const langContainer = document.getElementById(d ? 'd_langs' : 'i_langs');
+    const selected = langContainer.querySelectorAll('.lang-chip.selected');
+    if(selected.length === 0) {
+      langContainer.style.outline = '2px solid #C41E3A';
+      langContainer.style.borderRadius = '8px';
+      setTimeout(() => { langContainer.style.outline = ''; }, 2000);
+      return false;
+    }
+  }
+  return valid;
+}
+
+function getLangs(containerId) {
+  return Array.from(document.getElementById(containerId).querySelectorAll('.lang-chip.selected'))
+    .map(el => el.textContent).join(', ') || 'Not specified';
+}
+
+function getVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function buildDriverMessage() {
+  const langs = getLangs('d_langs');
+  return encodeURIComponent(
+`*New Driver Booking — DoD*
+
+*Name:* ${getVal('d_name')}
+*Phone:* ${getVal('d_phone')}
+*Area:* ${getVal('d_area')}
+
+*Pickup:* ${getVal('d_pickup')}
+*Drop:* ${getVal('d_drop')}
+*Date:* ${getVal('d_date')}
+*Time:* ${getVal('d_time')}
+*Trip Type:* ${getVal('d_type')}
+*Duration:* ${getVal('d_hours') || 'Not specified'}
+
+*Car:* ${getVal('d_car') || 'Not specified'}
+*Language:* ${langs}
+*Notes:* ${getVal('d_notes') || 'None'}`
+  );
+}
+
+function buildInstructorMessage() {
+  const langs = getLangs('i_langs');
+  return encodeURIComponent(
+`*New Lesson Request — DoD*
+
+*Name:* ${getVal('i_name')}
+*Phone:* ${getVal('i_phone')}
+*Area:* ${getVal('i_area')}
+*Gender Pref:* ${getVal('i_gender') || 'No preference'}
+
+*Location:* ${getVal('i_location')}
+*Date:* ${getVal('i_date')}
+*Time:* ${getVal('i_time')}
+*Level:* ${getVal('i_level')}
+*Sessions:* ${getVal('i_sessions') || 'Not decided'}
+
+*Car:* ${getVal('i_car')}
+*Transmission:* ${getVal('i_transmission') || 'Not specified'}
+*Language:* ${langs}
+*Notes:* ${getVal('i_notes') || 'None'}`
+  );
+}
+
+// ── EmailJS + Google Sheets integration ─────────────────────────────────────
+const EMAILJS_PUBLIC_KEY  = 's4q_f_GaWYpXitAIg';
+const EMAILJS_SERVICE_ID  = 'service_8nlictw';
+const EMAILJS_TEMPLATE_ID = 'template_ovgh17f';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxLUp-z5foKbDKC9h58aqA3lmlWi3HOIcPHKHYb4tCVNaJitpStHNXSb1XMfGS3vibssg/exec';
+
+function showSubmitting(prefix) {
+  const btn = document.getElementById(prefix + 'Next');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+}
+
+function showSuccess(prefix) {
+  document.getElementById(prefix + 'Step3').classList.remove('active');
+  document.getElementById(prefix + 'Success').classList.add('active');
+  document.getElementById(prefix + 'Footer').style.display = 'none';
+  document.getElementById(prefix + 'Note').style.display = 'none';
+  document.getElementById(prefix + 'Steps').style.display = 'none';
+  document.getElementById(prefix + 'Dots').style.display = 'none';
+}
+
+function logToSheets(data) {
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function() {});
+}
+
+async function submitBooking(type) {
+  const isDriver = type === 'driver';
+  const prefix   = isDriver ? 'driver' : 'instructor';
+  showSubmitting(prefix);
+
+  const now   = new Date();
+  const langs = getLangs(isDriver ? 'd_langs' : 'i_langs');
+
+  const data = isDriver ? {
+    date:''+now.toLocaleDateString('en-IN'), time:''+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    type:'Driver Booking', name:getVal('d_name'), phone:getVal('d_phone'), area:getVal('d_area'),
+    pickup:getVal('d_pickup'), drop:getVal('d_drop'), tripType:getVal('d_type'),
+    duration:getVal('d_hours'), car:getVal('d_car'), language:langs, notes:getVal('d_notes'),
+    location:'', level:'', sessions:'', transmission:''
+  } : {
+    date:''+now.toLocaleDateString('en-IN'), time:''+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    type:'Driving Lesson', name:getVal('i_name'), phone:getVal('i_phone'), area:getVal('i_area'),
+    location:getVal('i_location'), pickup:'', drop:'', tripType:'', duration:'',
+    car:getVal('i_car'), transmission:getVal('i_transmission'), level:getVal('i_level'),
+    sessions:getVal('i_sessions'), language:langs, notes:getVal('i_notes')
+  };
+
+  const subject = isDriver ? 'New Driver Booking — DoD' : 'New Driving Lesson Request — DoD';
+
+  const emailBody = isDriver
+    ? 'NEW DRIVER BOOKING — DoD\n\nSubmitted: '+data.date+' at '+data.time+'\n\nCUSTOMER DETAILS\nName    : '+data.name+'\nPhone   : '+data.phone+'\nArea    : '+data.area+'\n\nTRIP DETAILS\nPickup  : '+data.pickup+'\nDrop    : '+data.drop+'\nDate    : '+getVal('d_date')+'\nTime    : '+getVal('d_time')+'\nType    : '+data.tripType+'\nDuration: '+(data.duration||'Not specified')+'\n\nPREFERENCES\nCar     : '+(data.car||'Not specified')+'\nLanguage: '+langs+'\nNotes   : '+(data.notes||'None')
+    : 'NEW DRIVING LESSON REQUEST — DoD\n\nSubmitted: '+data.date+' at '+data.time+'\n\nCUSTOMER DETAILS\nName       : '+data.name+'\nPhone      : '+data.phone+'\nArea       : '+data.area+'\nGender Pref: '+(getVal('i_gender')||'No preference')+'\n\nLESSON DETAILS\nLocation   : '+data.location+'\nDate       : '+getVal('i_date')+'\nTime       : '+getVal('i_time')+'\nLevel      : '+data.level+'\nSessions   : '+(data.sessions||'Not decided')+'\n\nPREFERENCES\nCar        : '+data.car+'\nTransmission: '+(data.transmission||'Not specified')+'\nLanguage   : '+langs+'\nNotes      : '+(data.notes||'None');
+
+  const waBody = isDriver
+    ? '*New Driver Booking — DoD*%0A%0A*Name:* '+encodeURIComponent(data.name)+'%0A*Phone:* '+encodeURIComponent(data.phone)+'%0A*Area:* '+encodeURIComponent(data.area)+'%0A%0A*Pickup:* '+encodeURIComponent(data.pickup)+'%0A*Drop:* '+encodeURIComponent(data.drop)+'%0A*Date:* '+encodeURIComponent(getVal('d_date'))+'%0A*Time:* '+encodeURIComponent(getVal('d_time'))+'%0A*Trip Type:* '+encodeURIComponent(data.tripType)+'%0A*Duration:* '+encodeURIComponent(data.duration||'Not specified')+'%0A%0A*Car:* '+encodeURIComponent(data.car||'Not specified')+'%0A*Language:* '+encodeURIComponent(langs)+'%0A*Notes:* '+encodeURIComponent(data.notes||'None')
+    : '*New Lesson Request — DoD*%0A%0A*Name:* '+encodeURIComponent(data.name)+'%0A*Phone:* '+encodeURIComponent(data.phone)+'%0A*Area:* '+encodeURIComponent(data.area)+'%0A%0A*Location:* '+encodeURIComponent(data.location)+'%0A*Date:* '+encodeURIComponent(getVal('i_date'))+'%0A*Time:* '+encodeURIComponent(getVal('i_time'))+'%0A*Level:* '+encodeURIComponent(data.level)+'%0A*Sessions:* '+encodeURIComponent(data.sessions||'Not decided')+'%0A%0A*Car:* '+encodeURIComponent(data.car)+'%0A*Language:* '+encodeURIComponent(langs)+'%0A*Notes:* '+encodeURIComponent(data.notes||'None');
+
+  const waUrl = 'https://wa.me/'+WA_NUM+'?text='+waBody;
+
+  // 1. Log to Google Sheets
+  logToSheets(data);
+
+  // 2. Send email via EmailJS
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_name: 'DoD Team',
+      to_email: 'dodteams@gmail.com',
+      subject: subject,
+      message: emailBody,
+      reply_to: 'dodteams@gmail.com'
+    });
+  } catch(err) { console.warn('EmailJS:', err); }
+
+  // 3. Open WhatsApp
+  window.open(waUrl, '_blank');
+
+  // 4. Show success
+  showSuccess(prefix);
+}
+
+function nextStep(type) {
+  const s = modalState[type];
+  if(!validateStep(type)) return;
+  if(s.step === s.total) { submitBooking(type); return; }
+  const prefix = type === 'driver' ? 'driver' : 'instructor';
+  document.getElementById(prefix + 'Step' + s.step).classList.remove('active');
+  s.step++;
+  document.getElementById(prefix + 'Step' + s.step).classList.add('active');
+  updateModalUI(type);
+  // Scroll modal to top on step change
+  document.querySelector('#modal' + (type === 'driver' ? 'Driver' : 'Instructor') + ' .modal-box').scrollTop = 0;
+}
+
+function prevStep(type) {
+  const s = modalState[type];
+  if(s.step <= 1) return;
+  const prefix = type === 'driver' ? 'driver' : 'instructor';
+  document.getElementById(prefix + 'Step' + s.step).classList.remove('active');
+  s.step--;
+  document.getElementById(prefix + 'Step' + s.step).classList.add('active');
+  updateModalUI(type);
+}
+
+function toggleLang(el) { el.classList.toggle('selected'); }
+
+</script>
+</body>
+</html>
